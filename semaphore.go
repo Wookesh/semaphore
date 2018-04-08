@@ -13,10 +13,16 @@ func New(capacity int) Semaphore {
 }
 
 func (s Semaphore) P() {
+	if s == nil {
+		return
+	}
 	<-s
 }
 
 func (s Semaphore) V() {
+	if s == nil {
+		return
+	}
 	s <- ticket{}
 }
 
